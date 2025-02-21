@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Invited to a Date!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffcccb;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff1493;
+            font-size: 3em;
+        }
+        p {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .invite-box {
+            background-color: #fff;
+            border: 5px dashed #ff69b4;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            border-radius: 15px;
+        }
+        .button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-size: 1.2em;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #ff1493;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 0.8em;
+            color: #666;
+        }
+        .hidden {
+            display: none;
+        }
+        .response {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ff1493;
+            font-weight: bold;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        .feedback-button {
+            margin-top: 10px;
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .feedback-button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <div class="invite-box">
+        <h1>Hey You! 😏</h1>
+        <p>You've been formally invited to a <strong>date</strong> with yours truly!</p>
+        <p>Why? Because life's too short to swipe left on destiny. 🚀</p>
+        <p>Here's the deal:</p>
+        <ul style="list-style-type: none; padding: 0;">
+            <li>📍 Location: The Fancy Place (aka my couch)</li>
+            <li>📅 Date: Whenever you're free (but sooner is better)</li>
+            <li>🎉 Activities: Netflix, snacks, and awkward silences</li>
+        </ul>
+        <p>RSVP below before I start overthinking and cancel the whole thing. 😅</p>
+        <button id="yesButton" class="button">I'm In! Let's Do This!</button>
+        <button id="noButton" class="button" style="background-color: #ccc; color: #333;">I'm Out (You'll Regret This)</button>
+        <div id="responseMessage" class="response hidden"></div>
+        <div id="feedbackBox" class="hidden">
+            <textarea id="feedbackInput" placeholder="Got any special requests? Or just want to tell me how awesome I am? 😏"></textarea>
+            <br>
+            <button id="sendFeedback" class="feedback-button">Send Feedback</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>P.S. If you don't show up, I'll just binge-watch shows alone. Again. 🍕😭</p>
+    </div>
+
+    <script>
+        // Get the buttons and response message element
+        const yesButton = document.getElementById('yesButton');
+        const noButton = document.getElementById('noButton');
+        const responseMessage = document.getElementById('responseMessage');
+        const feedbackBox = document.getElementById('feedbackBox');
+        const feedbackInput = document.getElementById('feedbackInput');
+        const sendFeedbackButton = document.getElementById('sendFeedback');
+
+        // Add click event to the "I'm In!" button
+        yesButton.addEventListener('click', () => {
+            responseMessage.textContent = "YAY! 🎉 You won't regret this (probably). See you on the couch! 🛋️";
+            responseMessage.classList.remove('hidden');
+            feedbackBox.classList.remove('hidden'); // Show the feedback box
+            yesButton.disabled = true; // Disable the button after clicking
+            noButton.disabled = true; // Disable the other button too
+        });
+
+        // Add click event to the "I'm Out" button
+        noButton.addEventListener('click', () => {
+            responseMessage.textContent = "Ouch. 😭 My heart... it's broken. Enjoy your lonely Netflix nights! 🍕";
+            responseMessage.classList.remove('hidden');
+            yesButton.disabled = true; // Disable the button after clicking
+            noButton.disabled = true; // Disable the other button too
+        });
+
+        // Add click event to the "Send Feedback" button
+        sendFeedbackButton.addEventListener('click', () => {
+            const feedback = feedbackInput.value.trim();
+            if (feedback) {
+                // Create a mailto link with the feedback
+                const subject = "Feedback for Our Date!";
+                const body = encodeURIComponent(feedback);
+                window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+            } else {
+                alert("Come on, don't be shy! Write something! 😏");
+            }
+        });
+    </script>
+</body>
+</html>
