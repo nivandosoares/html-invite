@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proposta</title>
     <style>
+        /* Adicionando a fonte Comic Sans localmente */
+        @font-face {
+            font-family: 'Comic Sans MS';
+            src: url('fonts/Comic Sans MS.ttf') format('truetype'); /* Caminho para a fonte */
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body {
-            font-family: 'Comic Sans MS',  sans-serif;
+            font-family: 'Comic Sans MS', sans-serif; /* Usando a fonte local */
             background-color: #ffcccb;
             text-align: center;
             padding: 50px;
@@ -63,7 +71,7 @@
             font-size: 1em;
             border: 2px solid #ff69b4;
             border-radius: 10px;
-            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-family: 'Comic Sans MS', sans-serif; /* Usando a fonte local */
         }
         .feedback-button {
             margin-top: 10px;
@@ -82,18 +90,18 @@
 </head>
 <body>
    <div class="invite-box">
-    <h1>Ei,você!</h1>
-    <p>Você foi oficialmente convidada para um <strong>encontro</strong> comigo, a pessoa mais incrível desse que você conhece!</p>
-    <p>Por quê? Porque você é a pessoa mais incrível desse lugar, e devemos ser incríveis juntos</p>
+    <h1>✨ Ei, você! ✨</h1>
+    <p>Você foi oficialmente convidada para um <strong>encontro</strong> comigo, a pessoa mais legal desse lugar que você conhece!</p>
+    <p>Por quê? Porque você é a pessoa mais incrível desse lugar, <strong> devemos ser incríveis juntos!</strong></p>
     <p>Mas de preferência longe desse lugar</p>
     <ul style="list-style-type: none; padding: 0;">
-        <li>📍 Local:  a ser discutido via catálogo de lugares de irecê que revisamos antes</li>
+        <li>📍 Local:  a ser discutido via catálogo de lugares de Irecê que revisamos antes</li>
       <br>
         <li>📅 Data: Quando você puder (mas quanto antes, melhor)</li>
       <br>
         <li>🎉 Atividades: Qualquer uma, não ironicamente eu assistiria tinta secando na parede com você</li>
     </ul>
-    <p>O que me diz? confirme no botão abaixo </p>
+    <p>O que me diz? Confirme no botão abaixo </p>
     <button id="yesButton" class="button">Aceito!</button>
     <button id="noButton" class="button" style="background-color: #ccc; color: #333;">Aceito também (mas em cor diferente)</button>
     <div id="responseMessage" class="response hidden"></div>
@@ -104,9 +112,9 @@
     </div>
 </div>
 <div class="footer">
-    <p>esse site html fuleiro era pra ser atividade da faculdade - mas usei o conteúdo da aula pra isso ao invés de um conversor de moeda</p>
+    <p>Esse site HTML fuleiro era pra ser atividade da faculdade - mas usei o conteúdo da aula pra isso ao invés de um conversor de moeda</p>
   <br>
-  <p>convite válido um vez por qr code</p>
+  <p>Convite válido uma vez por QR code</p>
 </div>
 
     <script>
@@ -120,7 +128,7 @@
 
         // Add click event to the "I'm In!" button
         yesButton.addEventListener('click', () => {
-            responseMessage.textContent = "Obrigado por aceitar! me envie uma mensagem de confirmação abaixo";
+            responseMessage.textContent = "Obrigado por aceitar! Me envie uma mensagem de confirmação abaixo";
             responseMessage.classList.remove('hidden');
             feedbackBox.classList.remove('hidden'); // Show the feedback box
             yesButton.disabled = true; // Disable the button after clicking
@@ -129,12 +137,14 @@
 
         // Add click event to the "I'm Out" button
         noButton.addEventListener('click', () => {
-            responseMessage.textContent = "Obrigado por aceitar! me envie uma mensagem de confirmação abaixo";
+            responseMessage.textContent = "Obrigado por aceitar! Me envie uma mensagem de confirmação abaixo";
             responseMessage.classList.remove('hidden');
             feedbackBox.classList.remove('hidden'); // Show the feedback box
             yesButton.disabled = true; // Disable the button after clicking
             noButton.disabled = true; // Disable the other button too
-        }); sendFeedbackButton.addEventListener('click', () => {
+        });
+
+        sendFeedbackButton.addEventListener('click', () => {
             const feedback = feedbackInput.value.trim();
             if (feedback) {
                 // Create a mailto link with the feedback
@@ -142,7 +152,7 @@
                 const body = encodeURIComponent(feedback);
                 window.location.href = `mailto:sidvandoni@gmail.com?subject=${subject}&body=${body}`;
             } else {
-                alert("por favor preencha o campo de sugestões, seu feedback é essencial");
+                alert("Por favor, preencha o campo de sugestões. Seu feedback é essencial!");
             }
         });
     </script>
