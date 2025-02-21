@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>You're Invited to a Date!</title>
+    <title>Proposta</title>
     <style>
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -81,29 +81,33 @@
     </style>
 </head>
 <body>
-    <div class="invite-box">
-        <h1>Hey You! 😏</h1>
-        <p>You've been formally invited to a <strong>date</strong> with yours truly!</p>
-        <p>Why? Because life's too short to swipe left on destiny. 🚀</p>
-        <p>Here's the deal:</p>
-        <ul style="list-style-type: none; padding: 0;">
-            <li>📍 Location: The Fancy Place (aka my couch)</li>
-            <li>📅 Date: Whenever you're free (but sooner is better)</li>
-            <li>🎉 Activities: Netflix, snacks, and awkward silences</li>
-        </ul>
-        <p>RSVP below before I start overthinking and cancel the whole thing. 😅</p>
-        <button id="yesButton" class="button">I'm In! Let's Do This!</button>
-        <button id="noButton" class="button" style="background-color: #ccc; color: #333;">I'm Out (You'll Regret This)</button>
-        <div id="responseMessage" class="response hidden"></div>
-        <div id="feedbackBox" class="hidden">
-            <textarea id="feedbackInput" placeholder="Got any special requests? Or just want to tell me how awesome I am? 😏"></textarea>
-            <br>
-            <button id="sendFeedback" class="feedback-button">Send Feedback</button>
-        </div>
+   <div class="invite-box">
+    <h1>Ei, você! 😏</h1>
+    <p>Você foi oficialmente convidado para um <strong>encontro</strong> comigo, a pessoa mais incrível desse que você conhece!</p>
+    <p>Por quê? Porque você é a pessoa mais incrível desse lugar, e devemos ser incríveis juntos</p>
+    <p>Mas de preferência longe desse lugar</p>
+    <ul style="list-style-type: none; padding: 0;">
+        <li>📍 Local:  a ser discutido via catálogo de lugares de irecê que revisamos antes</li>
+      <br>
+        <li>📅 Data: Quando você puder (mas quanto antes, melhor)</li>
+      <br>
+        <li>🎉 Atividades: Qualquer uma, não ironicamente eu assistiria tinta secando na parede com você</li>
+    </ul>
+    <p>O que me diz? confirme no botão abaixo </p>
+    <button id="yesButton" class="button">Aceito!</button>
+    <button id="noButton" class="button" style="background-color: #ccc; color: #333;">Aceito também (mas em cor diferente)</button>
+    <div id="responseMessage" class="response hidden"></div>
+    <div id="feedbackBox" class="hidden">
+        <textarea id="feedbackInput" placeholder="Tem algum pedido especial? Dicas, sugestões? - por favor diga qualquer coisa"></textarea>
+        <br>
+        <button id="sendFeedback" class="feedback-button">Enviar</button>
     </div>
-    <div class="footer">
-        <p>P.S. If you don't show up, I'll just binge-watch shows alone. Again. 🍕😭</p>
-    </div>
+</div>
+<div class="footer">
+    <p>esse site html fuleiro era pra ser atividade da faculdade - mas usei o conteúdo da aula pra isso ao invés de um conversor de moeda</p>
+  <br>
+  <p>convite válido um vez por qr code</p>
+</div>
 
     <script>
         // Get the buttons and response message element
@@ -116,7 +120,7 @@
 
         // Add click event to the "I'm In!" button
         yesButton.addEventListener('click', () => {
-            responseMessage.textContent = "YAY! 🎉 You won't regret this (probably). See you on the couch! 🛋️";
+            responseMessage.textContent = "Obrigado por aceitar! me envie uma mensagem de confirmação abaixo";
             responseMessage.classList.remove('hidden');
             feedbackBox.classList.remove('hidden'); // Show the feedback box
             yesButton.disabled = true; // Disable the button after clicking
@@ -125,22 +129,20 @@
 
         // Add click event to the "I'm Out" button
         noButton.addEventListener('click', () => {
-            responseMessage.textContent = "Ouch. 😭 My heart... it's broken. Enjoy your lonely Netflix nights! 🍕";
+            responseMessage.textContent = "Obrigado por aceitar! me envie uma mensagem de confirmação abaixo";
             responseMessage.classList.remove('hidden');
+            feedbackBox.classList.remove('hidden'); // Show the feedback box
             yesButton.disabled = true; // Disable the button after clicking
             noButton.disabled = true; // Disable the other button too
-        });
-
-        // Add click event to the "Send Feedback" button
-        sendFeedbackButton.addEventListener('click', () => {
+        }); sendFeedbackButton.addEventListener('click', () => {
             const feedback = feedbackInput.value.trim();
             if (feedback) {
                 // Create a mailto link with the feedback
                 const subject = "Feedback for Our Date!";
                 const body = encodeURIComponent(feedback);
-                window.location.href = `mailto:your-email@example.com?subject=${subject}&body=${body}`;
+                window.location.href = `mailto:sifvandoni@gmail.com?subject=${subject}&body=${body}`;
             } else {
-                alert("Come on, don't be shy! Write something! 😏");
+                alert("por favor preencha o campo de sugestões, seu feedback é essencial");
             }
         });
     </script>
