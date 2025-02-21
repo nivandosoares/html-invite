@@ -111,62 +111,88 @@
         <button type="submit" class="feedback-button">Enviar</button>
     </form>
 </div>
+<div id="confirmationPage" class="confirmation-box hidden">
+    <h1>🎉 CONFIRMADO! 🎉</h1>
+    <div style="width:100%;height:0;padding-bottom:65%;position:relative;"><iframe src="https://giphy.com/embed/GyJ8p0Um850ic" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div>
+    <div class="confetti">
+        <!-- Confetti pieces will be generated here -->
+    </div>
+    <p>Obrigado por aceitar! Agora, resta discutir os termos em breve</p>
+</div>
+
 <div class="footer">
     <p>Esse site HTML fuleiro era pra ser atividade da faculdade - mas usei o conteúdo da aula pra isso ao invés de um conversor de moeda</p>
   <br>
   <p>Este convite é único e exclusivo, não aceitamos print de tela.</p>
 </div>
 
-    <script>
-        // Get the buttons and response message element
-        const yesButton = document.getElementById('yesButton');
-        const noButton = document.getElementById('noButton');
-        const responseMessage = document.getElementById('responseMessage');
-        const feedbackForm = document.getElementById('feedbackForm');
+<script>
+    // Get the buttons and elements
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+    const responseMessage = document.getElementById('responseMessage');
+    const feedbackForm = document.getElementById('feedbackForm');
+    const invitePage = document.getElementById('invitePage');
+    const confirmationPage = document.getElementById('confirmationPage');
+    const confettiContainer = document.querySelector('.confetti');
 
-        // Add click event to the "I'm In!" button
-        yesButton.addEventListener('click', () => {
-            responseMessage.textContent = "Obrigado por aceitar! Antes de confirmar, digite uma mensagem de confirmação abaixo";
-            responseMessage.classList.remove('hidden');
-            feedbackForm.classList.remove('hidden'); // Show the feedback form
-            yesButton.disabled = true; // Disable the button after clicking
-            noButton.disabled = true; // Disable the other button too
-        });
+    // Add click event to the "I'm In!" button
+    yesButton.addEventListener('click', () => {
+        responseMessage.textContent = "Obrigado por aceitar! Me envie uma mensagem de confirmação abaixo";
+        responseMessage.classList.remove('hidden');
+        feedbackForm.classList.remove('hidden'); // Show the feedback form
+        yesButton.disabled = true; // Disable the button after clicking
+        noButton.disabled = true; // Disable the other button too
+    });
 
-        // Add click event to the "I'm Out" button
-        noButton.addEventListener('click', () => {
-            responseMessage.textContent = "Obrigado por aceitar! Antes de confirmar, digite uma mensagem de confirmação abaixo";
-            responseMessage.classList.remove('hidden');
-            feedbackForm.classList.remove('hidden'); // Show the feedback form
-            yesButton.disabled = true; // Disable the button after clicking
-            noButton.disabled = true; // Disable the other button too
-        });
+    // Add click event to the "I'm Out" button
+    noButton.addEventListener('click', () => {
+        responseMessage.textContent = "Obrigado por aceitar! Me envie uma mensagem de confirmação abaixo";
+        responseMessage.classList.remove('hidden');
+        feedbackForm.classList.remove('hidden'); // Show the feedback form
+        yesButton.disabled = true; // Disable the button after clicking
+        noButton.disabled = true; // Disable the other button too
+    });
 
-        // Handle form submission
-        feedbackForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // Prevent the default form submission
-            const formData = new FormData(feedbackForm);
+    // Handle form submission
+    feedbackForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent the default form submission
+        const formData = new FormData(feedbackForm);
 
-            // Send the form data to Formspree
-            fetch(feedbackForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    responseMessage.textContent = "Feedback enviado! Obrigado, Você é incrível. 😎";
-                    feedbackForm.classList.add('hidden'); // Hide the form after submission
-                } else {
-                    responseMessage.textContent = "Oops! Algo deu errado. Tente novamente mais tarde! 😅";
-                }
-            })
-            .catch(() => {
+        // Send the form data to Formspree
+        fetch(feedbackForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Hide the first page and show the confirmation page
+                invitePage.classList.add('hidden');
+                confirmationPage.classList.remove('hidden');
+                generateConfetti(); // Add confetti effect
+            } else {
                 responseMessage.textContent = "Oops! Algo deu errado. Tente novamente mais tarde! 😅";
-            });
+            }
+        })
+        .catch(() => {
+            responseMessage.textContent = "Oops! Algo deu errado. Tente novamente mais tarde! 😅";
         });
-    </script>
+    });
+
+    // Function to generate confetti
+    function generateConfetti() {
+        for (let i = 0; i < 100; i++) {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti-piece');
+            confetti.style.left = `${Math.random() * 100}vw`;
+            confetti.style.animationDelay = `${Math.random() * 5}s`;
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confettiContainer.appendChild(confetti);
+        }
+    }
+</script>
 </body>
 </html>
